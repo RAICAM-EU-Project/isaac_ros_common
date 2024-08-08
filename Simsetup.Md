@@ -23,13 +23,14 @@ Portainer CE is an open-source GUI for creating and managing docker containers. 
 ### Installing Nvidia Docker
 Install the Nvidia Container toolkit with [These Instructions](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 
-If GPUs fail to load after deploying Isaac sim docker please follow [these instructions](). TODO
-
 ### General Installation
 
-1. Clone the repo to your ros2 workspace
+1. Set your workspace definitions and Clone the repo to your ros2 workspace
    ```bash
-   git clone https://github.com/SasaKuruppuarachchi/isaacsim_ros2_drone.git
+   echo "export WORKSPACES_DIR='/home/sasa/workspace'" >> ~/.bashrc
+   echo "export ISAAC_ROS_DEV_DIR='/home/sasa/workspace/raicam-ros'" >> ~/.bashrc
+   source ~/.bashrc
+   cd $ISAAC_ROS_DEV_DIR && git clone https://github.com/RAICAM-EU-Project/isaac_ros_common.git -b your_branch
    ```
 
 2. Get git submodules
