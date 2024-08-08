@@ -34,6 +34,9 @@ Go to library and install ISAACSIM.
 ### Enable ROS2 extension
 Open IsaacSIM > Window > Extension > ROS2 bridge – enable (Autoload)
 
+### Installing Qgroundcontrol (for PX4 based implementations)
+Follow the latest instructions at the [official page](https://docs.qgroundcontrol.com/master/en/qgc-user-guide/getting_started/download_and_install.html)
+
 ### Installing docker
 Follow the latest instructions at the [official docker page](https://docs.docker.com/engine/install/ubuntu/)
 
