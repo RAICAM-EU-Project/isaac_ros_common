@@ -6,13 +6,33 @@ This dockerised implementation is made with aspirations from following open-sour
 
 ## Installation
 
-### Prerequisites
+### Prerequisites for host PC
 - Ubuntu 20.04/22.04 Operating System
 - NVIDIA GPU (RTX 2070 or higher)
 - NVIDIA GPU Driver (recommended version 525.85)
 
+### ROS2 Hummble 
+Follow the latest instructions at the [official page](https://docs.ros.org/en/humble/Installation.html)
+
+### tmux
+Install tmux from 
+```bash
+sudo apt install tmux
+cd && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+if you are new to tmux or not already familiar wit tmux
+```bash
+wget https://raw.githubusercontent.com/SasaKuruppuarachchi/SasaKuruppuarachchi/main/.tmux.conf -P ~/
+```
+go to .tmux.conf and edit line 12 "set -g prefix `". This charactor "`" depends on your keyboard layout.
+
 ### Nucleus Server
 [Download](https://docs.omniverse.nvidia.com/install-guide/latest/workstation-install.html) and install Omniverse Launcher and install [Nucleus Server](https://docs.omniverse.nvidia.com/launcher/latest/workstation-launcher.html#collaboration-tab)
+Go to library and install ISAACSIM.
+
+### Enable ROS2 extension
+Open IsaacSIM > Window > Extension > ROS2 bridge – enable (Autoload)
 
 ### Installing docker
 Follow the latest instructions at the [official docker page](https://docs.docker.com/engine/install/ubuntu/)
