@@ -1,6 +1,6 @@
 # IsaacSIM with ROS2 and Px4 based robots and Drones
 
-## Installation
+## Installation - Host PC
 
 ### Prerequisites for host PC
 - Ubuntu 20.04/22.04 Operating System
@@ -52,7 +52,25 @@ make px4_sitl_default none
 
 &emsp; For further information [visit here](https://docs.px4.io/main/en/dev_setup/building_px4.html)
 
-## General Installation
+### Pegusus simulaotor
+&emsp; Add the following lines to your ~/.bashrc or ~/.zshrc file.
+```bash
+# Isaac Sim root directory
+export ISAACSIM_PATH="${HOME}/.local/share/ov/pkg/isaac_sim-4.1.0"
+# Isaac Sim python executable
+alias ISAACSIM_PYTHON="${ISAACSIM_PATH}/python.sh"
+# Isaac Sim app
+alias ISAACSIM="${ISAACSIM_PATH}/isaac-sim.sh"
+```
+
+```bash
+cd $HOME
+git clone https://github.com/PX4/PX4-Autopilot.git --recursive
+cd PX4-Autopilot
+make px4_sitl_default none
+```
+
+## Installation - Docker contrainer
 
 1. Set your workspace definitions and Clone the repo to your ros2 workspace
    ```bash
