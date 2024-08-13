@@ -11,13 +11,13 @@
 &emsp; Follow the latest instructions at the [official page](https://docs.ros.org/en/humble/Installation.html)
 
 ### tmux
-&emsp; ```bash
+```bash
 sudo apt install tmux
 cd && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
 &emsp; if you are new to tmux or not already familiar wit tmux
-&emsp; ```bash
+```bash
 wget https://raw.githubusercontent.com/SasaKuruppuarachchi/SasaKuruppuarachchi/main/.tmux.conf -P ~/
 ```
 &emsp; go to .tmux.conf and edit line 12 "set -g prefix \`". This charactor "\`" depends on your keyboard layout.
