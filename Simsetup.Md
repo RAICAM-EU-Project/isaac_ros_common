@@ -8,7 +8,7 @@
 - NVIDIA GPU Driver (recommended version 525.85)
 
 ### ROS2 Hummble 
-Follow the latest instructions at the [official page](https://docs.ros.org/en/humble/Installation.html)
+- Follow the latest instructions at the [official page](https://docs.ros.org/en/humble/Installation.html)
 
 ### tmux
 ```bash
