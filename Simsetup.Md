@@ -11,16 +11,16 @@
 &emsp; Follow the latest instructions at the [official page](https://docs.ros.org/en/humble/Installation.html)
 
 ### tmux
-```bash
+&emsp; ```bash
 sudo apt install tmux
 cd && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-if you are new to tmux or not already familiar wit tmux
-```bash
+&emsp; if you are new to tmux or not already familiar wit tmux
+&emsp; ```bash
 wget https://raw.githubusercontent.com/SasaKuruppuarachchi/SasaKuruppuarachchi/main/.tmux.conf -P ~/
 ```
-go to .tmux.conf and edit line 12 "set -g prefix \`". This charactor "\`" depends on your keyboard layout.
+&emsp; go to .tmux.conf and edit line 12 "set -g prefix \`". This charactor "\`" depends on your keyboard layout.
 
 ### Nucleus Server
 [Download](https://docs.omniverse.nvidia.com/install-guide/latest/workstation-install.html) and install Omniverse Launcher and install [Nucleus Server](https://docs.omniverse.nvidia.com/launcher/latest/workstation-launcher.html#collaboration-tab)
