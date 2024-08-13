@@ -23,23 +23,23 @@ wget https://raw.githubusercontent.com/SasaKuruppuarachchi/SasaKuruppuarachchi/m
 &emsp; go to .tmux.conf and edit line 12 "set -g prefix \`". This charactor "\`" depends on your keyboard layout.
 
 ### Nucleus Server
-[Download](https://docs.omniverse.nvidia.com/install-guide/latest/workstation-install.html) and install Omniverse Launcher and install [Nucleus Server](https://docs.omniverse.nvidia.com/launcher/latest/workstation-launcher.html#collaboration-tab)
-Go to library and install ISAACSIM.
+&emsp; [Download](https://docs.omniverse.nvidia.com/install-guide/latest/workstation-install.html) and install Omniverse Launcher and install [Nucleus Server](https://docs.omniverse.nvidia.com/launcher/latest/workstation-launcher.html#collaboration-tab)
+&emsp; Go to the library and install ISAACSIM.
 
 ### Enable ROS2 extension
-Open IsaacSIM > Window > Extension > ROS2 bridge – enable (Autoload)
+&emsp; Open IsaacSIM > Window > Extension > ROS2 bridge – enable (Autoload)
 
 ### Installing Qgroundcontrol (for PX4 based implementations)
-Follow the latest instructions at the [official page](https://docs.qgroundcontrol.com/master/en/qgc-user-guide/getting_started/download_and_install.html)
+&emsp; Follow the latest instructions at the [official page](https://docs.qgroundcontrol.com/master/en/qgc-user-guide/getting_started/download_and_install.html)
 
 ### Installing docker
-Follow the latest instructions at the [official docker page](https://docs.docker.com/engine/install/ubuntu/)
+&emsp; Follow the latest instructions at the [official docker page](https://docs.docker.com/engine/install/ubuntu/)
 
 ### Installing Portainer CE
-Portainer CE is an open-source GUI for creating and managing docker containers. Install it following [these instructions](https://docs.portainer.io/start/install-ce/server/docker/linux)
+&emsp; Portainer CE is an open-source GUI for creating and managing docker containers. Install it following [these instructions](https://docs.portainer.io/start/install-ce/server/docker/linux)
 
 ### Installing Nvidia Docker
-Install the Nvidia Container toolkit with [These Instructions](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+&emsp; Install the Nvidia Container toolkit with [These Instructions](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 
 ### General Installation
 
