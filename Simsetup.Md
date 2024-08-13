@@ -42,7 +42,7 @@ wget https://raw.githubusercontent.com/SasaKuruppuarachchi/SasaKuruppuarachchi/m
 &emsp; Install the Nvidia Container toolkit with [These Instructions](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 
 ### PX4 firmware
-&emsp; Install the Nvidia Container toolkit with [These Instructions](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+
 ```bash
 cd $HOME
 git clone https://github.com/PX4/PX4-Autopilot.git --recursive
@@ -50,7 +50,9 @@ cd PX4-Autopilot
 make px4_sitl_default none
 ```
 
-### General Installation
+&emsp; For further information [visit here](https://docs.px4.io/main/en/dev_setup/building_px4.html)
+
+## General Installation
 
 1. Set your workspace definitions and Clone the repo to your ros2 workspace
    ```bash
