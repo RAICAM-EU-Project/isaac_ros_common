@@ -44,12 +44,18 @@ wget https://raw.githubusercontent.com/SasaKuruppuarachchi/SasaKuruppuarachchi/m
 ### PX4 firmware
 
 ```bash
+# Linux packages
+sudo apt install git make cmake python3-pip
+
+# Python packages
+pip install kconfiglib jinja2 empy jsonschema pyros-genmsg packaging toml numpy future
+
 cd $HOME
 git clone https://github.com/PX4/PX4-Autopilot.git --recursive
 cd PX4-Autopilot
 make px4_sitl_default none
 ```
-
+if PX4 lauched properly you can exit out of it.
 &emsp; For further information [visit here](https://docs.px4.io/main/en/dev_setup/building_px4.html)
 
 ### Pegusus simulaotor
@@ -63,12 +69,40 @@ alias ISAACSIM_PYTHON="${ISAACSIM_PATH}/python.sh"
 alias ISAACSIM="${ISAACSIM_PATH}/isaac-sim.sh"
 ```
 
-```bash
-cd $HOME
-git clone https://github.com/PX4/PX4-Autopilot.git --recursive
-cd PX4-Autopilot
-make px4_sitl_default none
-```
+
+
+> [!NOTE]
+> For the first time, launching Isaac Sim takes a very long time.
+> Isaac Sim must be fully launched to spawn the robot.
+
+### Enabling Pegasus Simulator in Isaacsim (First Operation)
+
+1. Launch ``ISAACSIM`` application.
+
+2. Open the Window->extensions on the top menubar inside Isaac Sim.
+   ![alt text](https://github.com/PegasusSimulator/PegasusSimulator/blob/main/docs/_static/extensions_menu_bar.png)
+
+3. On the Extensions manager menu, we can enable or disable extensions. By pressing the settings button, we can 
+add a path to the Pegasus-Simulator repository.
+
+   ![alt text](https://github.com/PegasusSimulator/PegasusSimulator/blob/main/docs/_static/extensions_widget.png)
+
+4. The path inserted should be the path to the repository followed by ``/extensions``.
+
+   ![alt text](https://github.com/PegasusSimulator/PegasusSimulator/blob/main/docs/_static/ading_extension_path.png)
+
+
+5. After adding the path to the extension, we can enable the Pegasus Simulator extension on the third-party tab.
+
+   ![alt text](https://github.com/PegasusSimulator/PegasusSimulator/blob/main/docs/_static/pegasus_inside_extensions_menu.png)
+
+
+When enabling the extension for the first time, the python requirements should be install automatically for the build in 
+``ISAACSIM_PYTHON`` , and after a few seconds, the Pegasus widget GUI should pop-up.
+
+6. The Pegasus Simulator window should appear docked to the bottom-right section of the screen.
+
+   ![alt text](https://github.com/PegasusSimulator/PegasusSimulator/blob/main/docs/_static/pegasus_gui_example.png)
 
 ## Installation - Docker contrainer
 
@@ -138,40 +172,7 @@ make px4_sitl_default none
    cd PX4-Autopilot
    make px4_sitl_default none
    ```
-   if PX4 lauched properly you can exit out of it.
 
-> [!NOTE]
-> For the first time, launching Isaac Sim takes a very long time.
-> Isaac Sim must be fully launched to spawn the robot.
-
-### Enabling Pegasus Simulator in Isaacsim (First Operation)
-
-1. Launch ``ISAACSIM`` application.
-
-2. Open the Window->extensions on the top menubar inside Isaac Sim.
-   ![alt text](https://github.com/PegasusSimulator/PegasusSimulator/blob/main/docs/_static/extensions_menu_bar.png)
-
-3. On the Extensions manager menu, we can enable or disable extensions. By pressing the settings button, we can 
-add a path to the Pegasus-Simulator repository.
-
-   ![alt text](https://github.com/PegasusSimulator/PegasusSimulator/blob/main/docs/_static/extensions_widget.png)
-
-4. The path inserted should be the path to the repository followed by ``/extensions``.
-
-   ![alt text](https://github.com/PegasusSimulator/PegasusSimulator/blob/main/docs/_static/ading_extension_path.png)
-
-
-5. After adding the path to the extension, we can enable the Pegasus Simulator extension on the third-party tab.
-
-   ![alt text](https://github.com/PegasusSimulator/PegasusSimulator/blob/main/docs/_static/pegasus_inside_extensions_menu.png)
-
-
-When enabling the extension for the first time, the python requirements should be install automatically for the build in 
-``ISAACSIM_PYTHON`` , and after a few seconds, the Pegasus widget GUI should pop-up.
-
-6. The Pegasus Simulator window should appear docked to the bottom-right section of the screen.
-
-   ![alt text](https://github.com/PegasusSimulator/PegasusSimulator/blob/main/docs/_static/pegasus_gui_example.png)
 
 ## Getting Started
 
