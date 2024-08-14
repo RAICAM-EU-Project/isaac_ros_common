@@ -68,8 +68,18 @@ alias ISAACSIM_PYTHON="${ISAACSIM_PATH}/python.sh"
 # Isaac Sim app
 alias ISAACSIM="${ISAACSIM_PATH}/isaac-sim.sh"
 ```
+&emsp; Installing the extension as a library
 
+```bash
+# Go to the repository of the pegasus simulator
+cd PegasusSimulator
 
+# Go into the extensions directory
+cd extensions
+
+# Run the pip command using the built-in python interpreter
+ISAACSIM_PYTHON -m pip install --editable pegasus.simulator
+```
 
 > [!NOTE]
 > For the first time, launching Isaac Sim takes a very long time.
