@@ -118,7 +118,7 @@ When enabling the extension for the first time, the python requirements should b
 
 ## Installation - Docker contrainer
 
-1. Set your workspace definitions and Clone the repo to your ros2 workspace
+1. Set your workspace definitions and Clone the repo to your ros2 workspace. replace "your_branch" with "agipix_sim" for the drone
    ```bash
    echo "export WORKSPACES_DIR='/home/sasa/workspace'" >> ~/.bashrc
    echo "export ISAAC_ROS_DEV_DIR='/home/sasa/workspace/raicam-ros'" >> ~/.bashrc
