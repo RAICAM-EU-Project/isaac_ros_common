@@ -173,6 +173,11 @@ When enabling the extension for the first time, the python requirements should b
 
 Follow the instructions in the top right pane of docker tmux window
 
+4. Opening the UI
+
+   1. Open up a [Foxglow](https://app.foxglove.dev/) account and bavigate to the dashboard
+   2. Open connection with "ws://localhost:8765"
+
 
 
 
