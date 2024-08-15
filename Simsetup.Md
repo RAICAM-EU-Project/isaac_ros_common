@@ -67,6 +67,8 @@ export ISAACSIM_PATH="${HOME}/.local/share/ov/pkg/isaac_sim-4.1.0"
 alias ISAACSIM_PYTHON="${ISAACSIM_PATH}/python.sh"
 # Isaac Sim app
 alias ISAACSIM="${ISAACSIM_PATH}/isaac-sim.sh"
+# Change {user} accordingly
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/{user}/.local/share/ov/pkg/isaac_sim-2023.1.1/exts/omni.isaac.ros2_bridge/humble/lib
 ```
 &emsp; Installing the extension as a library
 
@@ -122,121 +124,55 @@ When enabling the extension for the first time, the python requirements should b
    echo "export ISAAC_ROS_DEV_DIR='/home/sasa/workspace/raicam-ros'" >> ~/.bashrc
    source ~/.bashrc
    cd $ISAAC_ROS_DEV_DIR && git clone https://github.com/RAICAM-EU-Project/isaac_ros_common.git -b your_branch
+   
+   # set up DDS for ROS2 communication
+   cd $WORKSPACES_DIR && mkdir dds && cd dds
+   git clone https://github.com/eProsima/Micro-XRCE-DDS-Agent.git
+   
+
+   # Set up control stack
+   cd $WORKSPACES_DIR && mkdir agipix_control && cd agipix_control
+   git clone https://github.com/SasaKuruppuarachchi/px4_ros2_offboard.git
+   git clone https://github.com/PX4/px4_msgs.git
+   git clone https://github.com/SasaKuruppuarachchi/agipix_user_interfaces.git
+
    ```
 
-2. Get git submodules
+2. First run of the Docker container
    ```bash
-   cd isaacsim_ros2_drone
-   git submodule update --init --recursive
-   cd px4
-   git clone -b v1.14.0-rc2 https://github.com/PX4/PX4-Autopilot.git --recursive
+   # this will start the compose the docker container and start it. First run might take up to 15 Minutes
+   cd $WORKSPACES_DIR/raicam-ros/src/isaac_ros_common/scripts/ && ./run_dev.sh
+
+   cd /workspaces/dds/Micro-XRCE-DDS-Agent/
+   mkdir build && cd build
+   cmake ..
+   make
+   sudo make install
+   sudo ldconfig /usr/local/lib/
+
+   cd /workspaces/agipix_control && colcon build
+   source /workspaces/agipix_control/install/setup.bash
    ```
 
-3. Build a docker image with shell script.
+## Running the Simulation
+
+1. Open a new terminal to launch the simulator
    ```bash
-   cd docker
-   chmod +x build_docker_image.sh
-   ./build_docker_image.sh
+   cd $ISAAC_ROS_DEV_DIR/src/isaac_ros_common/ && ./run_sim.sh
+   # press ENTER after moving to the right pane to launch IsaacSim
    ```
 
-4. Launch a docker container
+2. In a new terminal run the docker container
    ```bash
-   ./launch_docker.sh
+   source /workspaces/agipix_control/install/setup.bash
+
+   # this will run the control stack on docker
+   cd /workspaces/agipix_control/src/px4_ros2_offboard/tmux/ && ./start.sh
    ```
-5. Launch Isaac Sim
+3. Controlling the drone
 
-   At this point, you are expected to have NVIDIA Isaac Sim fully installed and working. To make sure you have everything setup correctly, open a new terminal window (Ctrl+Alt+T), and test the following commands:
+Follow the instructions in the top right pane of docker tmux window
 
-   Check that the simulator app can be launched
-
-   - Run the simulator with the --help argument to see all available options
-   ```bash
-   ISAACSIM --help
-   ```
-   - Run the simulator. A new window should open
-   ```bash
-   ISAACSIM
-   ```
-   Check that you can launch the simulator from a python script (standalone mode)
-
-   - Run the bundled python interpreter and see if it prints on the terminal "Hello World."
-   ```bash
-   ISAACSIM_PYTHON -c "print('Hello World.')"
-   ```
-
-   - Run the python interpreter and check if we can run a script that starts the simulator and adds cubes to the world
-   ```bash
-   ISAACSIM_PYTHON ${ISAACSIM_PATH}/standalone_examples/api/omni.isaac.core/add_cubes.py
-   ```
-
-   If you were unable to run the commands above successfuly, then something is incorrectly configured. Please do not proceed with this installation until you have everything setup correctly.
-
-> [!NOTE]
-> Secondary screens could freeze due to a bug in Nvidia driver. Disconnect and reconnect the HDMI
-> If Isaac sim failed to launch please post the log in issues section
-
-6. Attach to docker in new terminal to build and launch Px4_Auopilot
-   ```bash
-   docker exec -it isaac-sim-ros2 bash
-   cd /root
-   cd PX4-Autopilot
-   make px4_sitl_default none
-   ```
-
-
-## Getting Started
-
-1. Open a new terminal to launch QGC
-   ```bash
-   docker exec -it isaac-sim-ros2 bash
-   su ubuntu
-   cd
-   ./QGroundControl.AppImage
-   ```
-
-2. If Isaacsim is not running alunch in a new terminal
-   ```bash
-   docker exec -it isaac-sim-ros2 bash
-   ISAACSIM
-   ```
-3. Make sure the Pegasus Simulator Extension is enabled.
-
-   ![alt text](https://github.com/PegasusSimulator/PegasusSimulator/blob/main/docs/_static/pegasus_inside_extensions_menu.png)
-
-4. On the Pegasus Simulator tab in the bottom-right corner, click on the ``Load Scene`` button.
-
-   ![alt text](https://github.com/PegasusSimulator/PegasusSimulator/blob/main/docs/_static/tutorials/load_scene.png)
-
-5. Again, on the Pegasus Simulator tab, click on the ``Load Vehicle`` button.
-
-   ![alt text](https://github.com/PegasusSimulator/PegasusSimulator/blob/main/docs/_static/tutorials/load_vehicle.png)
-6. Press the ``play`` button on the simulator's control bar on the left corner.
-
-   ![alt text](https://github.com/PegasusSimulator/PegasusSimulator/blob/main/docs/_static/tutorials/play.png)
-
-7. On QGroundControl, an arrow representing the vehicle should pop-up. You can now perform a take-off, but pressing the
-``take-off`` button on top-left corner of QGroundControl.
-
-   ![alt text](https://github.com/PegasusSimulator/PegasusSimulator/blob/main/docs/_static/tutorials/take_off.png)
-
-8. On QGroundControl, left-click on a place on the map, press ``Go to location`` and slide at the bottom of the screen
-to confirm the target waypoint for the drone to follow.
-
-   ![alt text](https://github.com/PegasusSimulator/PegasusSimulator/blob/main/docs/_static/tutorials/go_to_location.png)
-
-
-<!-- 7. Build ros2 source codes
-   ```bash
-   colcon build && source install/setup.bash
-   ```
-
-8. Launch the package
-
-   7.1. For Mobile Robot
-   - To launch simulator
-   ```bash
-   ros2 run isaac_ros2_scripts launcher
-   ``` -->
 
 
 
