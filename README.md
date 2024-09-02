@@ -1,5 +1,7 @@
 # Isaac ROS Common
 
+## [Installation](https://github.com/RAICAM-EU-Project/isaac_ros_common/blob/main/Simsetup.Md)
+
 Dockerfiles and scripts for development using the Isaac ROS suite.
 
 ## Overview
