@@ -58,7 +58,7 @@ make px4_sitl_default none
 if PX4 lauched properly you can exit out of it.
 &emsp; For further information [visit here](https://docs.px4.io/main/en/dev_setup/building_px4.html)
 
-To syncronise the time stamps with the simulator we need to set the parameter [UXRCE_DDS_SYNCT]{https://docs.px4.io/main/en/advanced_config/parameter_reference.html#UXRCE_DDS_SYNCT} to `false`. To do that,
+To syncronise the time stamps with the simulator we need to set the parameter [UXRCE_DDS_SYNCT](https://docs.px4.io/main/en/advanced_config/parameter_reference.html#UXRCE_DDS_SYNCT) to `false`. To do that,
 1. Open the rcS file at `/PX4-Autopilot/ROMFS/px4fmu_common/init.d-posix/rcS`
 2. Paste the following line before ´#Autostart ID´
 ```bash
