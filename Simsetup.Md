@@ -64,6 +64,12 @@ To syncronise the time stamps with the simulator we need to set the parameter [U
 ```bash
 param set-default UXRCE_DDS_SYNCT 0
 ```
+3. Rebuild the firmware
+```bash
+cd $HOME
+cd PX4-Autopilot
+make px4_sitl_default none
+```
 
 ### Pegusus simulaotor
 &emsp; Add the following lines to your ~/.bashrc or ~/.zshrc file.
