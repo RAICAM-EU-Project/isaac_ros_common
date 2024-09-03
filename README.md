@@ -1,6 +1,8 @@
 # Isaac ROS Common
 
-Dockerfiles and scripts for development using the Isaac ROS suite.
+## [Installation](https://github.com/RAICAM-EU-Project/isaac_ros_common/blob/main/Simsetup.Md)
+
+IsaacSIM with ROS2 and Px4 based robots and Drones
 
 ## Overview
 
