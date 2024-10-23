@@ -20,7 +20,7 @@ tmux send-keys -t 3 "ISAACSIM_PYTHON 8_agipix.py"
 
 tmux send-keys -t 2 "cd && ./QGroundControl.AppImage" C-m
 
-tmux send-keys -t 1 "" C-m
+tmux send-keys -t 1 "ps aux |grep px4 " C-m
 
 #tmux send-keys -t 2 "cd /workspaces/px4_ros2" C-m
 

@@ -49,5 +49,7 @@ RUN apt-get install gz-garden -y
 
 RUN apt install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev -y
 RUN apt-get install python3-wstool ros-humble-mocap4r2-msgs ros-humble-mocap4r2-control -y
+RUN apt-get update && apt-get install ros-humble-teleop-twist-joy -y
+#RUN pip install pip install pyjoystick
 #RUN apt-get install libssl1.1
 #RUN apt-get install -y ros-humble-isaac-ros-visual-slam

@@ -233,6 +233,8 @@ DOCKER_ARGS+=("-e FASTRTPS_DEFAULT_PROFILES_FILE=/usr/local/share/middleware_pro
 DOCKER_ARGS+=("-e ROS_DOMAIN_ID")
 DOCKER_ARGS+=("-e USER")
 DOCKER_ARGS+=("-e ISAAC_ROS_WS=/workspaces/isaac_ros-dev")
+DOCKER_ARGS+=("-v /dev/input:/dev/input")
+DOCKER_ARGS+=("-v /dev/bus/usb:/dev/bus/usb")
 
 if [[ $PLATFORM == "aarch64" ]]; then
     DOCKER_ARGS+=("-v /usr/bin/tegrastats:/usr/bin/tegrastats")
@@ -241,7 +243,7 @@ if [[ $PLATFORM == "aarch64" ]]; then
     DOCKER_ARGS+=("-v /usr/src/jetson_multimedia_api:/usr/src/jetson_multimedia_api")
     DOCKER_ARGS+=("--pid=host")
     DOCKER_ARGS+=("-v /usr/share/vpi3:/usr/share/vpi3")
-    DOCKER_ARGS+=("-v /dev/input:/dev/input")
+    #DOCKER_ARGS+=("-v /dev/input:/dev/input")
 
     # If jtop present, give the container access
     if [[ $(getent group jtop) ]]; then
@@ -272,6 +274,10 @@ if [[ -f "${DOCKER_ARGS_FILEPATH}" ]]; then
 fi
 
 # Run container from image
+# --ipc=host \
+# --env="QT_X11_NO_MITSHM=1" \
+# --device=/dev/dri \
+# --group-add video \
 print_info "Running $CONTAINER_NAME"
 if [[ $VERBOSE -eq 1 ]]; then
     set -x
@@ -279,11 +285,13 @@ fi
 docker run -it --rm \
     --privileged \
     --network host \
+    --ipc=host \
     ${DOCKER_ARGS[@]} \
     -v $ISAAC_ROS_DEV_DIR:/workspaces/isaac_ros-dev \
     -v $WORKSPACES_DIR/dds:/workspaces/dds \
     -v $WORKSPACES_DIR/aerostack2_ws:/workspaces/aerostack2_ws \
     -v $WORKSPACES_DIR/agipix_control:/workspaces/agipix_control \
+    -v $WORKSPACES_DIR/lidar_ws:/workspaces/lidar_ws \
     -v $HOME/.profile:/home/admin/.profile \
     -v /etc/localtime:/etc/localtime:ro \
     --name "$CONTAINER_NAME" \
