@@ -21,6 +21,7 @@ echo "export PX4_FOLDER=/workspaces/aerostack2_ws/src/thirdparty/PX4-Autopilot" 
 echo "alias runagi='cd /workspaces/agipix_control/src/px4_ros2_offboard/tmux/ && ./start.sh -s'" >> ~/.bashrc
 echo "alias sorcon='source /workspaces/agipix_control/install/setup.bash'" >> ~/.bashrc
 echo "alias bilcon='cd /workspaces/agipix_control && colcon build --packages-skip px4_msgs'" >> ~/.bashrc
+echo "alias sorlidar='source /workspaces/lidar_ws/install/setup.bash'" >> ~/.bashrc
 
 # Build ROS dependency
 echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
@@ -32,6 +33,7 @@ rosdep update
 # curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 # python get-pip.py
 cd /workspaces/dds/Micro-XRCE-DDS-Agent/build && sudo make install && sudo ldconfig /usr/local/lib/
+cd /workspaces/lidar_ws/src/Livox-SDK2/build && sudo make install && sudo ldconfig /usr/local/lib/
 cd /workspaces/isaac_ros-dev
 #rosdep fix-permissions
 #rosdep install -y -r -q --from-paths src --ignore-src
