@@ -58,6 +58,21 @@ RUN apt-get install ros-humble-pcl-ros -y
 RUN apt-get install libapr1-dev libaprutil1-dev -y 
 # faster-lio
 RUN apt-get install libgoogle-glog-dev libeigen3-dev libpcl-dev libyaml-cpp-dev
+RUN pip3 install -U numpy
+RUN pip install seaborn
+#RUN pip install torchvision
+RUN apt install ros-humble-image-tools -y
+#RUN pip install tqdm
+
+#
+# PyCUDA
+#
+# ENV PATH="/usr/local/cuda/bin:${PATH}"
+# ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
+# RUN echo "$PATH" && echo "$LD_LIBRARY_PATH"
+
+#RUN pip3 install pycuda six --verbose
+
 #RUN pip install pip install pyjoystick
 #RUN apt-get install libssl1.1
 #RUN apt-get install -y ros-humble-isaac-ros-visual-slam
