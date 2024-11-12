@@ -289,7 +289,6 @@ docker run -it --rm \
     ${DOCKER_ARGS[@]} \
     -v $ISAAC_ROS_DEV_DIR:/workspaces/isaac_ros-dev \
     -v $WORKSPACES_DIR/dds:/workspaces/dds \
-    -v $WORKSPACES_DIR/aerostack2_ws:/workspaces/aerostack2_ws \
     -v $WORKSPACES_DIR/agipix_control:/workspaces/agipix_control \
     -v $WORKSPACES_DIR/lidar_ws:/workspaces/lidar_ws \
     -v $HOME/.profile:/home/admin/.profile \

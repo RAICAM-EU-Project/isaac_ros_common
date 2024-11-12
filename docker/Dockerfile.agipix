@@ -45,10 +45,10 @@ RUN pip3 install colcon-lcov-result cpplint cmakelint
 RUN wget https://packages.osrfoundation.org/gazebo.gpg -O /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
 RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null 
 RUN apt-get update
-RUN apt-get install gz-garden -y
+#RUN apt-get install gz-garden -y
 
 RUN apt install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev -y
-#RUN apt-get install python3-wstool ros-humble-mocap4r2-msgs ros-humble-mocap4r2-control -y
+RUN apt-get install python3-wstool ros-humble-mocap4r2-msgs ros-humble-mocap4r2-control -y
 RUN apt-get update && apt-get install ros-humble-teleop-twist-joy -y
 
 #lidar
@@ -58,21 +58,9 @@ RUN apt-get install ros-humble-pcl-ros -y
 RUN apt-get install libapr1-dev libaprutil1-dev -y 
 # faster-lio
 RUN apt-get install libgoogle-glog-dev libeigen3-dev libpcl-dev libyaml-cpp-dev
-RUN pip3 install -U numpy
+#RUN pip3 install -U numpy
 RUN pip install seaborn
 #RUN pip install torchvision
 RUN apt install ros-humble-image-tools -y
 #RUN pip install tqdm
-
-#
-# PyCUDA
-#
-# ENV PATH="/usr/local/cuda/bin:${PATH}"
-# ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
-# RUN echo "$PATH" && echo "$LD_LIBRARY_PATH"
-
-#RUN pip3 install pycuda six --verbose
-
-#RUN pip install pip install pyjoystick
-#RUN apt-get install libssl1.1
-#RUN apt-get install -y ros-humble-isaac-ros-visual-slam
+RUN pip install ultralytics

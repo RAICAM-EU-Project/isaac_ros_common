@@ -17,6 +17,7 @@ echo "alias stopas2='cd /workspaces/aerostack2_ws/src/project_agipix/ && ./stop.
 echo "alias sorpx4='source /workspaces/aerostack2_ws/install/setup.bash'" >> ~/.bashrc
 echo "export AEROSTACK2_WORKSPACE=/workspaces/aerostack2_ws" >> ~/.bashrc
 echo "export PX4_FOLDER=/workspaces/aerostack2_ws/src/thirdparty/PX4-Autopilot" >> ~/.bashrc
+echo "export FORCE_CUDA=1" >> ~/.bashrc
 
 echo "alias runagi='cd /workspaces/agipix_control/src/px4_ros2_offboard/tmux/ && ./start.sh -s'" >> ~/.bashrc
 echo "alias sorcon='source /workspaces/agipix_control/install/setup.bash'" >> ~/.bashrc

@@ -1,0 +1,32 @@
+#---
+# name: torchvision
+# group: pytorch
+# config: config.py
+# depends: [pytorch, cmake]
+# test: test.py
+#---
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+
+ENV FORCE_CUDA=1
+# COPY torchvision/build.sh /tmp/torchvision/
+# RUN cd /tmp/torchvision/  && \
+#     git clone -b v0.17.2 https://github.com/pytorch/vision.git
+ARG TORCH_CUDA_ARCH_LIST="5.3;6.2;7.2;8.7"
+# RUN cd /tmp/torchvision/vision  && \
+#     python setup.py develop
+
+ARG TORCHVISION_VERSION=0.17.2 \
+    FORCE_BUILD=on
+
+COPY torchvision/build.sh torchvision/install.sh /tmp/torchvision/
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        libjpeg-dev \
+        libpng-dev \
+        zlib1g-dev \
+	&& rm -rf /var/lib/apt/lists/* \
+	&& apt-get clean
+
+RUN /tmp/torchvision/install.sh || /tmp/torchvision/build.sh
