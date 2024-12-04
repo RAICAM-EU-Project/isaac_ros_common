@@ -24,6 +24,7 @@ echo "alias sorcon='source /workspaces/agipix_control/install/setup.bash'" >> ~/
 echo "alias bilcon='cd /workspaces/agipix_control && colcon build --packages-skip px4_msgs'" >> ~/.bashrc
 echo "alias sorlidar='source /workspaces/lidar_ws/install/setup.bash'" >> ~/.bashrc
 echo "alias billidar='cd /workspaces/lidar_ws/ && colcon build --symlink-install'" >> ~/.bashrc
+echo "export ROS_DOMAIN_ID=15" >> ~/.bashrc
 
 
 # Build ROS dependency
