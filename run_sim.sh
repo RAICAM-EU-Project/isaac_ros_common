@@ -18,7 +18,7 @@ sleep 1
 tmux send-keys -t 3 "cd ~/PegasusSimulator/examples" C-m
 tmux send-keys -t 3 "ISAACSIM_PYTHON 8_agipix.py" 
 
-tmux send-keys -t 2 "cd && ./QGroundControl.AppImage" C-m
+tmux send-keys -t 2 "cd && ./QGroundControl-x86_64.AppImage" C-m
 
 tmux send-keys -t 1 "ps aux |grep px4 " C-m
 
