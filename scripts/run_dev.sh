@@ -282,7 +282,7 @@ print_info "Running $CONTAINER_NAME"
 if [[ $VERBOSE -eq 1 ]]; then
     set -x
 fi
-docker run -it --rm \
+docker run -d -it --rm \
     --privileged \
     --network host \
     --ipc=host \
@@ -291,8 +291,10 @@ docker run -it --rm \
     -v $WORKSPACES_DIR/dds:/workspaces/dds \
     -v $WORKSPACES_DIR/agipix_control:/workspaces/agipix_control \
     -v $WORKSPACES_DIR/lidar_ws:/workspaces/lidar_ws \
+    -v $WORKSPACES_DIR/DepthGoals:/opt/depthgoals \
     -v $HOME/.profile:/home/admin/.profile \
     -v /etc/localtime:/etc/localtime:ro \
+    -e TORCH_HOME='/opt/depthgoals/src/depthgoals/deployment/src/depthgoals_deployment/model_weights/torch_hub_checkpoints' \
     --name "$CONTAINER_NAME" \
     --runtime nvidia \
     --user="admin" \

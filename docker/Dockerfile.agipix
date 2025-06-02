@@ -2,8 +2,7 @@ ARG BASE_IMAGE
 FROM ${BASE_IMAGE}
 
 # tmux
-RUN add-apt-repository universe -y
-RUN apt-get update
+RUN apt-get update && add-apt-repository universe -y
 RUN apt-get install apt-utils software-properties-common -y
 RUN apt install tmux tmuxinator iputils-ping -y
 RUN pip install kconfiglib jinja2 empy jsonschema pyros-genmsg packaging toml numpy future
@@ -29,10 +28,10 @@ RUN apt-get install python3-flake8 -y
 RUN apt-get install python3-flake8-polyfill \
                 python3-flake8-docstrings -y
 
-RUN pip3 install pylint
-RUN pip3 install flake8==4.0.1
-RUN pip3 install pycodestyle==2.8
-RUN pip3 install cmakelint cpplint
+RUN pip3 install pylint flake8==4.0.1 pycodestyle==2.8 cmakelint cpplint
+#RUN pip3 install flake8==4.0.1
+#RUN pip3 install pycodestyle==2.8
+#RUN pip3 install cmakelint cpplint
 
 RUN apt-get install cppcheck lcov -y
 RUN colcon mixin add default https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml
@@ -59,8 +58,30 @@ RUN apt-get install libapr1-dev libaprutil1-dev -y
 # faster-lio
 RUN apt-get install libgoogle-glog-dev libeigen3-dev libpcl-dev libyaml-cpp-dev
 #RUN pip3 install -U numpy
-RUN pip install seaborn
 #RUN pip install torchvision
-RUN apt install ros-humble-image-tools -y
+
+# RUN wget https://packages.osrfoundation.org/gazebo.gpg -O /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg \
+#      echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null 
+# RUN apt update & apt --fix-broken install & apt install ros-humble-image-tools -y
+
 #RUN pip install tqdm
-RUN pip install ultralytics
+
+RUN python -m pip install --upgrade pip && pip install ultralytics seaborn \
+    opencv-python \
+    numpy==1.* \
+    opencv-python \
+    albumentations \
+    h5py \
+    warmup_scheduler \
+    diffusers==0.11.1 \
+    vit-pytorch \
+    efficientnet_pytorch \
+    "git+https://github.com/robodhruv/visualnav-transformer.git@main#egg=vint-train&subdirectory=train"
+
+RUN pip install -e git+https://github.com/real-stanford/diffusion_policy.git@main#egg=diffusion_policy
+
+
+# Fast LIVO2 
+#RUN apt install ros-$ROS_DISTRO-sophus -y
+RUN add-apt-repository ppa:borglab/gtsam-release-4.2 -y
+RUN apt install libgtsam-dev libgtsam-unstable-dev -y
