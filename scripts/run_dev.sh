@@ -292,6 +292,8 @@ docker run -it --rm \
     -v $WORKSPACES_DIR/aerostack2_ws:/workspaces/aerostack2_ws \
     -v $WORKSPACES_DIR/agipix_control:/workspaces/agipix_control \
     -v $WORKSPACES_DIR/lidar_ws:/workspaces/lidar_ws \
+    -v $WORKSPACES_DIR/placenav:/workspaces/placenav \
+    -v $WORKSPACES_DIR/evaluation:/workspaces/evaluation \
     -v $HOME/.profile:/home/admin/.profile \
     -v /etc/localtime:/etc/localtime:ro \
     --name "$CONTAINER_NAME" \

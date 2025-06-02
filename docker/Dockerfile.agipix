@@ -63,3 +63,8 @@ RUN pip install seaborn
 #RUN pip install pip install pyjoystick
 #RUN apt-get install libssl1.1
 #RUN apt-get install -y ros-humble-isaac-ros-visual-slam
+
+# Fast LIVO2 
+RUN apt install ros-$ROS_DISTRO-sophus -y
+RUN add-apt-repository ppa:borglab/gtsam-release-4.2 -y
+RUN apt install libgtsam-dev libgtsam-unstable-dev -y

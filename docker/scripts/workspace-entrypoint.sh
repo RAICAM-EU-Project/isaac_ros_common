@@ -22,6 +22,7 @@ echo "alias runagi='cd /workspaces/agipix_control/src/agipix_px4_autonomy/tmux/ 
 echo "alias sorcon='source /workspaces/agipix_control/install/setup.bash'" >> ~/.bashrc
 echo "alias bilcon='cd /workspaces/agipix_control && colcon build --packages-skip px4_msgs'" >> ~/.bashrc
 echo "alias sorlidar='source /workspaces/lidar_ws/install/setup.bash'" >> ~/.bashrc
+echo "export PATH="$HOME/.local/bin:$PATH"" >> ~/.bashrc
 
 # Build ROS dependency
 echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
