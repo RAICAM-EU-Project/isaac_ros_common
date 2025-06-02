@@ -6,7 +6,7 @@ IsaacSIM with ROS2 and Px4 based robots and Drones
 
 ## Overview
 
-The [Isaac ROS Common](https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_common)
+The Isaac ROS Common
 repository contains a number of scripts and Dockerfiles to help
 streamline development and testing with the Isaac ROS suite.
 
@@ -33,4 +33,4 @@ Please visit the [Isaac ROS Documentation](https://nvidia-isaac-ros.github.io/re
 
 ## Latest
 
-Update 2024-09-26: Updated for Isaac ROS 3.1
+Update 2024-12-10: Refactored Dockerfiles
