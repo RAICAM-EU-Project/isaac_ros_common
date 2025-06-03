@@ -128,6 +128,7 @@ apt-get update && apt-get install -y \
     python3-opencv=4.5.4+dfsg-9ubuntu4 \
     python3-scipy
 
+RUN python3 -m pip install --upgrade pip setuptools wheel packaging
 # Additional Python dependencies
 RUN python3 -m pip install -U \
     Cython \
@@ -215,13 +216,13 @@ ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/opt/tritonserver/lib"
 # Install boost version >= 1.78 for boost::span
 # Current libboost-dev apt packages are < 1.78, so install from tar.gz
 RUN --mount=type=cache,target=/var/cache/apt \
-    wget -O /tmp/boost.tar.gz \
-    https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.gz \
+    wget -O /tmp/boost.tar.gz https://downloads.sourceforge.net/project/boost/boost/1.80.0/boost_1_80_0.tar.gz \
     && (cd /tmp && tar xzf boost.tar.gz) \
     && cd /tmp/boost_1_80_0 \
     && ./bootstrap.sh --prefix=/usr \
     && ./b2 install \
     && rm -rf /tmp/boost*
+
 
 # Install CV-CUDA
 RUN --mount=type=cache,target=/var/cache/apt \
