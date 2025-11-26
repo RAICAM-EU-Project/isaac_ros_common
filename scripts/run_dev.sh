@@ -239,10 +239,14 @@ DOCKER_ARGS+=("-v /dev/bus/usb:/dev/bus/usb")
 if [[ $PLATFORM == "aarch64" ]]; then
     DOCKER_ARGS+=("-v /usr/bin/tegrastats:/usr/bin/tegrastats")
     DOCKER_ARGS+=("-v /tmp/:/tmp/")
+    DOCKER_ARGS+=("-e DISPLAY")
     DOCKER_ARGS+=("-v /usr/lib/aarch64-linux-gnu/tegra:/usr/lib/aarch64-linux-gnu/tegra")
     DOCKER_ARGS+=("-v /usr/src/jetson_multimedia_api:/usr/src/jetson_multimedia_api")
     DOCKER_ARGS+=("--pid=host")
     DOCKER_ARGS+=("-v /usr/share/vpi3:/usr/share/vpi3")
+    DOCKER_ARGS+=("-v /dev/i2c-1:/dev/i2c-1")
+    DOCKER_ARGS+=("--group-add i2c")
+    
     #DOCKER_ARGS+=("-v /dev/input:/dev/input")
 
     # If jtop present, give the container access

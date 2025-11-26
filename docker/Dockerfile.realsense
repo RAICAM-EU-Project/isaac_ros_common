@@ -11,7 +11,7 @@
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}
 
-ARG LIBREALSENSE_SOURCE_VERSION=v2.55.1
+ARG LIBREALSENSE_SOURCE_VERSION=v2.56.5
 
 COPY scripts/build-librealsense.sh /opt/realsense/build-librealsense.sh
 COPY scripts/install-realsense-dependencies.sh /opt/realsense/install-realsense-dependencies.sh

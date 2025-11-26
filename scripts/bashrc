@@ -1,0 +1,39 @@
+############################################################
+# isaac_ros_common container user shell customizations
+# This file is appended to /home/<user>/.bashrc by the
+# workspace-entrypoint.sh script (idempotently).
+############################################################
+
+# Agipix / Isaac ROS helpers
+alias runagipix='cd /workspaces/isaac_ros-dev/src/isaac_ros_common && ./run.sh'
+
+alias runfxbridge='ros2 launch foxglove_bridge foxglove_bridge_launch.xml'
+
+# Aerostack2 helpers
+alias runas2='cd /workspaces/aerostack2_ws/src/aerostack2/as2_aerial_platforms/project_agipix/ && ./launch_as2.bash -s -t -g'
+alias stopas2='cd /workspaces/aerostack2_ws/src/project_agipix/ && ./stop.bash'
+alias sorpx4='source /workspaces/aerostack2_ws/install/setup.bash'
+export AEROSTACK2_WORKSPACE=/workspaces/aerostack2_ws
+export PX4_FOLDER=/workspaces/aerostack2_ws/src/thirdparty/PX4-Autopilot
+
+# Agipix control stack
+alias runagi='cd /workspaces/agipix_control/src/agipix_px4_autonomy/tmux/ && ./start.sh -s'
+alias sorcon='source /workspaces/agipix_control/install/setup.bash'
+alias bilcon='cd /workspaces/agipix_control && colcon build --packages-skip px4_msgs'
+
+# Lidar workspace
+alias sorlidar='source /workspaces/lidar_ws/install/setup.bash'
+
+# Isaac workspace
+alias sorisaac='source /workspaces/isaac_ros-dev/install/setup.bash'
+alias billidar='cd /workspaces/lidar_ws/src/livox_ros_driver2 && ./build.sh humble'
+
+# Environment variables
+export PATH="$HOME/.local/bin:$PATH"
+export ROS_DOMAIN_ID=15
+export LD_LIBRARY_PATH="/workspaces/agipix_control/src/agipix_px4_autonomy/trajectory_planner/include/trajectory_planner/third_party/lib/x86:$LD_LIBRARY_PATH"
+export ISAAC_ROS_WS="/workspaces/isaac_ros-dev"
+export OPENBLAS_CORETYPE=ARMV8  # DepthAI
+
+# End of customizations
+############################################################

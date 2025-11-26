@@ -11,23 +11,19 @@
 # tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 wget https://raw.githubusercontent.com/SasaKuruppuarachchi/SasaKuruppuarachchi/main/.tmux.conf -P ~/
-echo "alias runagipix='cd /workspaces/isaac_ros-dev/src/isaac_ros_common && ./run.sh'" >> ~/.bashrc
-echo "alias runas2='cd /workspaces/aerostack2_ws/src/aerostack2/as2_aerial_platforms/project_agipix/ && ./launch_as2.bash -s -t -g'" >> ~/.bashrc
-echo "alias stopas2='cd /workspaces/aerostack2_ws/src/project_agipix/ && ./stop.bash'" >> ~/.bashrc
-echo "alias sorpx4='source /workspaces/aerostack2_ws/install/setup.bash'" >> ~/.bashrc
-echo "export AEROSTACK2_WORKSPACE=/workspaces/aerostack2_ws" >> ~/.bashrc
-echo "export PX4_FOLDER=/workspaces/aerostack2_ws/src/thirdparty/PX4-Autopilot" >> ~/.bashrc
-echo "export FORCE_CUDA=1" >> ~/.bashrc
 
-echo "alias runagi='cd /workspaces/agipix_control/src/agipix_px4_autonomy/tmux/ && ./start.sh'" >> ~/.bashrc
-echo "alias sorcon='source /workspaces/agipix_control/install/setup.bash'" >> ~/.bashrc
-echo "alias bilcon='cd /workspaces/agipix_control && colcon build --packages-skip px4_msgs'" >> ~/.bashrc
-echo "alias sorlidar='source /workspaces/lidar_ws/install/setup.bash'" >> ~/.bashrc
-#echo "alias billidar='cd /workspaces/lidar_ws/ && colcon build --symlink-install'" >> ~/.bashrc
-echo "alias billidar='cd /workspaces/lidar_ws/src/livox_ros_driver2 && ./build.sh humble'" >> ~/.bashrc
-echo "export ROS_DOMAIN_ID=15" >> ~/.bashrc
+# Append custom bashrc snippet (idempotent)
+BASHRC_SNIPPET_SRC="/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/bashrc"
+if ! grep -q "isaac_ros_common container user shell customizations" /home/admin/.bashrc 2>/dev/null; then
+  if [ -f "$BASHRC_SNIPPET_SRC" ]; then
+    cat "$BASHRC_SNIPPET_SRC" >> /home/admin/.bashrc
+  else
+    echo "WARNING: bashrc snippet not found at $BASHRC_SNIPPET_SRC" >&2
+  fi
+fi
 
-
+#add i2c dev permissions
+sudo chown :i2c /dev/i2c-1 && sudo chmod g+rw /dev/i2c-1
 # Build ROS dependency
 echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
 source /opt/ros/${ROS_DISTRO}/setup.bash
@@ -40,6 +36,7 @@ rosdep update
 cd /workspaces/dds/Micro-XRCE-DDS-Agent/build && sudo make install && sudo ldconfig /usr/local/lib/
 cd /workspaces/lidar_ws/src/Livox-SDK2/build && sudo make install && sudo ldconfig /usr/local/lib/
 cd /workspaces/isaac_ros-dev
+
 #rosdep fix-permissions
 #rosdep install -y -r -q --from-paths src --ignore-src
 

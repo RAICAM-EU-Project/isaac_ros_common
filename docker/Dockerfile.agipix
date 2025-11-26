@@ -42,7 +42,7 @@ RUN apt-get update && \
 # Install pip dependencies
 RUN python3 -m pip install --upgrade pip && \
     pip3 install \
-        kconfiglib jinja2 empy jsonschema pyros-genmsg packaging toml numpy future \
+        kconfiglib smbus jinja2 empy jsonschema pyros-genmsg packaging toml numpy future \
         freesimplegui pymap3d \
         pylint flake8==4.0.1 pycodestyle==2.8 cmakelint cpplint \
         colcon-lcov-result \
@@ -61,3 +61,9 @@ RUN wget https://packages.osrfoundation.org/gazebo.gpg -O /usr/share/keyrings/pk
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | \
     tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null && \
     apt-get update
+
+RUN apt-get install -y ros-${ROS_DISTRO}-octomap-ros && rm -f /etc/apt/sources.list.d/isaac-ros.list && \
+    apt-get install -y ros-humble-camera-calibration && \
+    apt-get install -y ros-${ROS_DISTRO}-marti-common-msgs
+
+RUN apt-get install -y libgl1 libglib2.0-0 libsm6 libxext6 libxrender1 libx11-xcb1 libxkbcommon-x11-0 libxcb1 libxcb-xinerama0 libavcodec-extra ros-humble-ffmpeg-image-transport ros-humble-depthai ros-humble-foxglove-msgs ros-humble-rviz-imu-plugin gedit
