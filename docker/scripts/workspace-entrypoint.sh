@@ -61,18 +61,16 @@ source /opt/ros/${ROS_DISTRO}/setup.bash
 # tmux
 git clone https://github.com/tmux-plugins/tpm /home/admin/.tmux/plugins/tpm
 wget https://raw.githubusercontent.com/SasaKuruppuarachchi/SasaKuruppuarachchi/main/.tmux.conf -P /home/admin/
-echo "alias runagipix='cd /workspaces/isaac_ros-dev/src/isaac_ros_common && ./run.sh'" >> /home/admin/.bashrc
-echo "alias runas2='cd /workspaces/aerostack2_ws/src/aerostack2/as2_aerial_platforms/project_agipix/ && ./launch_as2.bash -s -t -g'" >> /home/admin/.bashrc
-echo "alias stopas2='cd /workspaces/aerostack2_ws/src/project_agipix/ && ./stop.bash'" >> /home/admin/.bashrc
-echo "alias sorpx4='source /workspaces/aerostack2_ws/install/setup.bash'" >> /home/admin/.bashrc
-echo "export AEROSTACK2_WORKSPACE=/workspaces/aerostack2_ws" >> /home/admin/.bashrc
-echo "export PX4_FOLDER=/workspaces/aerostack2_ws/src/thirdparty/PX4-Autopilot" >> /home/admin/.bashrc
 
-echo "alias runagi='cd /workspaces/agipix_control/src/agipix_px4_autonomy/tmux/ && ./start.sh -s'" >> /home/admin/.bashrc
-echo "alias sorcon='source /workspaces/agipix_control/install/setup.bash'" >> /home/admin/.bashrc
-echo "alias bilcon='cd /workspaces/agipix_control && colcon build --packages-skip px4_msgs'" >> /home/admin/.bashrc
-echo "alias sorlidar='source /workspaces/lidar_ws/install/setup.bash'" >> /home/admin/.bashrc
-echo "export PATH="$HOME/.local/bin:$PATH"" >> /home/admin/.bashrc
+# Append custom bashrc snippet (idempotent)
+BASHRC_SNIPPET_SRC="/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/bashrc"
+if ! grep -q "isaac_ros_common container user shell customizations" /home/admin/.bashrc 2>/dev/null; then
+  if [ -f "$BASHRC_SNIPPET_SRC" ]; then
+    cat "$BASHRC_SNIPPET_SRC" >> /home/admin/.bashrc
+  else
+    echo "WARNING: bashrc snippet not found at $BASHRC_SNIPPET_SRC" >&2
+  fi
+fi
 
 echo "Creating non-root container '${USERNAME}' for host user uid=${HOST_USER_UID}:gid=${HOST_USER_GID}"
 

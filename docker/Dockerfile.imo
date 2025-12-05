@@ -1,0 +1,49 @@
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+
+# tmux
+RUN add-apt-repository universe -y
+RUN apt-get update
+RUN apt-get install apt-utils software-properties-common -y
+RUN apt install tmux tmuxinator iputils-ping -y
+RUN pip install kconfiglib jinja2 empy jsonschema pyros-genmsg packaging toml numpy future
+
+RUN python3 -m pip install -U \
+        compilers \
+        make \
+        colcon-common-extensions \
+        catkin_tools \
+        catkin_pkg \
+        google-auth \
+        ipython \
+        matplotlib \
+        numba \
+        pandas \
+        pyyaml \
+        requests \
+        rospkg \
+        scipy \
+        tensorboard \
+        h5py \
+        progressbar2
+
+        # pkg-config pytorch-mutex xorg-libxdmcp \ yaml \
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install pyquaternion
+RUN pip install "numpy<2.0" 
+RUN pip install gymnasium
+
+RUN pip install rerun-sdk
+
+# DIVE
+RUN pip install torchmetrics lightning torchviz
+# Air IO
+RUN pip install wandb pypose pyhocon
+#RUN python3 -m pip install debugpy
+#ENTRYPOINT [ "python", "-m", "debugpy", "--listen", "0.0.0.0:5678", "--wait-for-client", "-m" ] 
+#debugpy --listen 0.0.0.0:5678 --wait-for-client -m python
+# RUN python3 -m pip install -U \
+#         pkg-config \
+#         pytorch-mutex \
+#         xorg-libxdmcp \
+#         yaml

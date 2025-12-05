@@ -10,8 +10,9 @@ tmux new-window -n debug -t agipix_sim # new window
 tmux select-window -t main
 
 # divide
-tmux split-window -h -t 1
 tmux split-window -v -t 1
+tmux split-window -h -t 1
+
 
 # run
 sleep 1

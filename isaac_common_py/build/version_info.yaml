@@ -1,0 +1,16 @@
+build_datetime: '2025-08-14T21:13:01.181089'
+git_branch: agipix-sim
+git_commit_date: 2025-06-06 16:13:33 +0300
+git_commit_hash: 8e7ca5423501f27ff3d575b6bf1ad3ef6faf9ce6
+git_commit_message: 'Add .dockerignore and update Dockerfile for improved dependency
+  management
+
+
+  - Created .dockerignore to exclude workspace-entrypoint.sh from Docker context.
+
+  - Refactored Dockerfile.agipix to streamline package installations and reduce image
+  size.
+
+  - Updated workspace-entrypoint.sh to set up user-specific configurations in /home/admin.'
+git_workspace_dirty: 'Yes'
+version: 3.2.5

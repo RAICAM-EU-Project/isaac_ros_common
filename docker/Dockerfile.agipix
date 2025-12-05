@@ -1,6 +1,9 @@
 ARG BASE_IMAGE=ubuntu:22.04
 FROM $BASE_IMAGE
 
+RUN mkdir -p /opt/hpcx/ompi/lib/x86_64-linux-gnu
+RUN ln -s /opt/hpcx/ompi /opt/hpcx/ompi/lib/x86_64-linux-gnu/openmpi && dpkg-reconfigure libc-bin
+
 # Add repositories and update
 RUN add-apt-repository universe -y && \
     apt-get update && \
@@ -48,7 +51,51 @@ RUN wget https://packages.osrfoundation.org/gazebo.gpg -O /usr/share/keyrings/pk
 # Add GTSAM repository and install
 RUN add-apt-repository ppa:borglab/gtsam-release-4.2 -y && \
     apt-get update && \
-    apt-get install -y libgtsam-dev libgtsam-unstable-dev
+    apt-get install -y libgtsam-dev libgtsam-unstable-dev && \
+    apt-get install -y ros-${ROS_DISTRO}-octomap-ros ros-humble-octomap-rviz-plugins && \
+    apt-get install -y ros-${ROS_DISTRO}-marti-common-msgs
+
+# nvblox dep
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ros-humble-isaac-ros-common \
+    ros-humble-isaac-ros-launch-utils \
+    ros-humble-isaac-ros-visual-slam \
+    ros-humble-isaac-ros-dnn-image-encoder \
+    ros-humble-isaac-ros-tensor-proc \
+    ros-humble-isaac-ros-triton \
+    ros-humble-magic-enum \
+    ros-humble-isaac-ros-gxf \
+    ros-humble-gxf-isaac-gems \
+    ros-humble-gxf-isaac-atlas \
+    ros-humble-gxf-isaac-gxf-helpers \
+    ros-humble-gxf-isaac-image-flip \
+    ros-humble-gxf-isaac-message-compositor \
+    ros-humble-gxf-isaac-messages \
+    ros-humble-gxf-isaac-optimizer \
+    ros-humble-gxf-isaac-sight \
+    ros-humble-gxf-isaac-tensorops \
+    ros-humble-isaac-common \
+    ros-humble-isaac-ros-image-proc \
+    ros-humble-isaac-ros-managed-nitros \
+    ros-humble-isaac-ros-nitros \
+    ros-humble-isaac-ros-nitros-camera-info-type \
+    ros-humble-isaac-ros-nitros-image-type \
+    ros-humble-isaac-ros-nitros-tensor-list-type \
+    ros-humble-isaac-ros-tensor-list-interfaces \
+    ros-humble-isaac-ros-visual-slam-interfaces \
+    ros-humble-gxf-isaac-triton \
+    ros-humble-ackermann-msgs \
+    libnvidia-compute-560 \
+    libnvidia-decode-560 \
+    jq \
+    libjq1 && \
+    rm -rf /var/lib/apt/lists/*
+
 
 # Upgrade numpy (again, if needed)
 RUN pip3 install -U numpy
+
+
+
+
+

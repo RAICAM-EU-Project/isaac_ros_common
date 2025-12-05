@@ -292,10 +292,11 @@ docker run -it --rm \
     --ipc=host \
     --ipc=host \
     ${DOCKER_ARGS[@]} \
-    -v $ISAAC_ROS_DEV_DIR:/workspaces/isaac_ros-dev \
+    -v $WORKSPACES_DIR/raicam-ros:/workspaces/isaac_ros-dev/ \
     -v $WORKSPACES_DIR/dds:/workspaces/dds \
     -v $WORKSPACES_DIR/aerostack2_ws:/workspaces/aerostack2_ws \
     -v $WORKSPACES_DIR/agipix_control:/workspaces/agipix_control \
+    -v $WORKSPACES_DIR/agi_upgrade:/workspaces/agi_upgrade \
     -v $WORKSPACES_DIR/lidar_ws:/workspaces/lidar_ws \
     -v $WORKSPACES_DIR/placenav:/workspaces/placenav \
     -v $WORKSPACES_DIR/evaluation:/workspaces/evaluation \
